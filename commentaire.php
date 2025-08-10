@@ -117,17 +117,17 @@
 
 
          <div class=container_form>
-
-             <form id=form action="livreor.php" method="post">
-
-
-                 <label for="message"><b>Votre commentaire:</b></label><br><br>
-                 <textarea name="comment" placeholder=" Mettez votre commentaire ici" cols="55" rows="4"></textarea>
-                 <br><br>
-                 <input class=bouton_submit type="submit" name="Envoyer" value="Envoyer">
-
-             </form>
-
+             <div>
+                 <h2>Votre commentaire:</h2>
+                 <br>
+                 <form id=form action="livreor.php" method="post">
+                     <textarea name="comment" placeholder=" Mettez votre commentaire ici"></textarea>
+                     <br><br>
+                     <div class=btn>
+                         <input class=bouton_submit type="submit" name="Envoyer" value="Envoyer">
+                     </div>
+                 </form>
+             </div>
          </div>
 
 

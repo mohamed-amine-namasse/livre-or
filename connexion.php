@@ -182,17 +182,19 @@
 
 
         <div class=container_form>
-            <h2>Connexion</h2>
-            <br>
-            <form id=form action="profil.php" method="post">
-                <label><b>Login:</b></label><br>
-                <input type="text" name="login"><br>
-                <label><b>Password:</b></label><br>
-                <input type="text" name="password"><br><br>
-                <input class=bouton_submit type="submit" value="Envoyer">
-
-            </form>
-
+            <div>
+                <h2>Connexion</h2>
+                <br>
+                <form id=form action="profil.php" method="post">
+                    <label><b>Login:</b></label><br>
+                    <input type="text" name="login"><br>
+                    <label><b>Password:</b></label><br>
+                    <input type="text" name="password">
+                    <div class=btn>
+                        <input class=bouton_submit type="submit" value="Envoyer">
+                    </div>
+                </form>
+            </div>
         </div>
 
 

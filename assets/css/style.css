@@ -11,8 +11,8 @@ body {
 
 /*
 *{outline: 1px solid red;
-}
-*/
+}*/
+
 h1{text-align: center;
 font-family: Arial, Helvetica, sans-serif;}
 h2{
@@ -58,15 +58,17 @@ header{
  background-color:white;
  border-bottom:1px solid ;
  border-color: grey;
+ 
 
-
- overflow: hidden;
+overflow: hidden;
 }
 
 main{
+    display:flex;
+    justify-content: center;
     padding-top: 80px;
-    padding-right: 80px;
-    padding-left: 50px;
+    padding-right: 5%;
+    padding-left: 5%;
     min-height: calc(100vh - 230px);
     
 }
@@ -81,8 +83,7 @@ footer{
   }
 .container_footer{
     display: flex;
-    justify-content: center;
-    gap:300px;
+    justify-content: space-around;
     margin-bottom: 30px;
   }
 
@@ -119,8 +120,9 @@ font-family:"Poppins";}
 ul{
     
 
-padding: 20px 0;
+
 display: flex;
+padding: 20px;
 
 
 
@@ -132,7 +134,7 @@ text-decoration: none;}
 
 ul li a{
     color:black;
-    padding:0 50px;
+    padding:0 20px;
     display: block;
     text-decoration: none;
 }
@@ -187,58 +189,70 @@ ul li a .name{
 .container_form{
   background-color: white;
   font-family: Arial, Helvetica, sans-serif;
-  width: 500px;
+  display: flex;
+  justify-content: center;
+  border: green 1px solid;
   height: fit-content;
   border-radius: 20px;
   position: absolute;
   top: 300px;
   padding-top: 20px;
   padding-bottom: 30px;
-  margin-left: 28%;
+  width: 30vw;
+ 
   
 }
 .container_form2{
   background-color: white;
   font-family: Arial, Helvetica, sans-serif;
-  width: 80%;
   height: fit-content;
   position: absolute;
   top: 250px;
   padding-top: 20px;
   padding-bottom: 30px;
-  margin-left: 5%;
   margin-bottom:50px
 }
 
 #form{
-
-  padding-left: 40px;
+  
+  width: 30vw;
   color: black;
   font-size:medium;
   font-family: Arial, Helvetica, sans-serif;}
 
+.btn{
+  display: flex;
+  justify-content: center;
+  
+}
   .bouton_submit{
     height: 40px;
-    width: 100px;
+    width: fit-content;
+    margin: auto;
+    padding:5px ;
     color: white;
-    margin-left: 155px;
     background-color: green;
     border: none;
     border-radius: 3px;
   }
   .bouton_submit:hover{
-    height: 40px;
-    width: 100px;
-    color: white;
-    margin-left: 155px;
+   
     background-color: rgb(52, 145, 52);
-    border: none;
-    border-radius: 3px;
+   
+  }
+  form label{
+    margin-left: 1%;
   }
   form input{
-    width: 400px;
+    
     height: 25px;
+    margin-left: 1%;
+    width: 96%;
     margin-bottom: 10px;
+  }
+
+  textarea{
+    width: 100%;
   }
 
    table{
@@ -266,26 +280,50 @@ button:hover{
   background-color: rgb(25, 139, 25);
  
 }
-#main{
+#main_title{
   text-align: left;
   font-family: Arial, Helvetica, sans-serif;
   margin-top: 20px;
 }
 
 .photo
-  {display: flex;
-    justify-content: center;
-
+  {display: flex;}
+  .photo img
+  {width: 100%;
    }
 
- .photo img
-  {margin-top: 25px;
-   width: 40%;
-   height: 40%;
-   }
+
+ 
 
    #profil
   {padding-left: 33%;
    font-size:100px;
    color:black;
   }
+
+  @media (max-width:982px)
+{
+main{flex-direction: column;
+  align-items: center;
+gap:40px;}
+
+
+}
+
+ @media (max-width:492px)
+{
+ul{display: flex;
+flex-wrap:wrap ;
+justify-content: center;}
+header{
+  height: fit-content;
+  
+}
+}
+ 
+ @media (max-width:862px)
+{
+h1,h2,h3,label {font-size: 3vw;}
+
+
+}

@@ -128,7 +128,7 @@
 
 
                 <div class="text">
-                    <h1 id=main>Bienvenue!<span> à toi sur la page d'accueil </span></h1>
+                    <h1 id=main_title>Bienvenue!<span> à toi sur la page d'accueil </span></h1>
                     <p>Ce site comprend un module de connexion. Il s'agit d'un module qui te permet de te connecter
                         via des sessions à ton compte.Tu peux modifier tes données également!</p>
                 </div>

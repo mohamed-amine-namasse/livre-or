@@ -110,19 +110,23 @@
 
 
         <div class=container_form>
-            <h2>Création de compte</h2>
-            <br>
-            <form id=form action="connexion.php" method="post">
-                <label><b>Login:</b></label><br>
-                <input type="text" name="login"><br>
-                <label><b>Password:</b></label><br>
-                <input type="text" name="password"><br>
-                <label><b>Confirmation Password:</b></label><br>
-                <input type="text" name="confirm_password"><br><br>
-                <input class=bouton_submit type="submit" value="Envoyer">
+            <div>
+                <h2>Création de compte</h2>
+                <br>
 
-            </form>
 
+                <form id=form action="connexion.php" method="post">
+                    <label><b>Login:</b></label><br>
+                    <input type="text" name="login"><br>
+                    <label><b>Password:</b></label><br>
+                    <input type="text" name="password"><br>
+                    <label><b>Confirmation Password:</b></label><br>
+                    <input type="text" name="confirm_password">
+                    <div class=btn>
+                        <input class=bouton_submit type="submit" value="Envoyer">
+                    </div>
+                </form>
+            </div>
         </div>
 
 

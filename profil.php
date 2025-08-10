@@ -208,18 +208,20 @@
 
 
         <div class=container_form>
-            <h2>Information du compte</h2>
+            <div>
+                <h2>Information du compte</h2>
+                <br>
+                <form id=form action=" profil.php" method="post">
 
-            <br>
-            <form id=form action=" profil.php" method="post">
-                <i id="profil" class="fa fa-user-circle-o"></i><br>
-                <label><b>Login:</b></label><br>
-                <input type="text" name="login" value=<?php if (isset($donnee)){ echo $donnee['login'];} ?>><br>
-                <label><b>Password:</b></label><br>
-                <input type="text" name="password" value="" ?><br>
-                <input class=bouton_submit type="submit" value="Modifier">
-
-            </form>
+                    <label><b>Login:</b></label><br>
+                    <input type="text" name="login" value=<?php if (isset($donnee)){ echo $donnee['login'];} ?>><br>
+                    <label><b>Password:</b></label><br>
+                    <input type="text" name="password" value="" ?><br>
+                    <div class=btn>
+                        <input class=bouton_submit type="submit" value="Modifier">
+                    </div>
+                </form>
+            </div>
 
         </div>
 
