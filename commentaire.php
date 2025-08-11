@@ -121,8 +121,10 @@
                  <h2>Votre commentaire:</h2>
                  <br>
                  <form id=form action="livreor.php" method="post">
-                     <textarea name="comment" placeholder=" Mettez votre commentaire ici"></textarea>
-                     <br><br>
+                     <div class=commentaire>
+                         <textarea name="comment" placeholder=" Mettez votre commentaire ici"></textarea>
+                     </div>
+                     <br>
                      <div class=btn>
                          <input class=bouton_submit type="submit" name="Envoyer" value="Envoyer">
                      </div>

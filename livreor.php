@@ -181,24 +181,25 @@
 
 
               <?php       
-                // Récupérer tous les commentaires, du plus récent au plus ancien
-          $command = "SELECT commentaires.date AS 'Posté le' ,utilisateurs.login AS 'Par utilisateur',commentaires.commentaire AS 'Commentaires'
-          FROM commentaires
-          JOIN utilisateurs ON commentaires.id_utilisateur = utilisateurs.id
-          ORDER BY commentaires.date DESC ";
-          $result = mysqli_query($connexion, $command);
-         ?>
+                    // Récupérer tous les commentaires, du plus récent au plus ancien
+            $command = "SELECT commentaires.date AS 'Posté le' ,utilisateurs.login AS 'Par utilisateur',commentaires.commentaire AS 'Commentaires'
+            FROM commentaires
+            JOIN utilisateurs ON commentaires.id_utilisateur = utilisateurs.id
+            ORDER BY commentaires.date DESC ";
+            $result = mysqli_query($connexion, $command);
+            ?>
               <h2>Livre d'or</h2>
-              <table>
-                  <tr>
-                      <?php
+              <div style="overflow-x:auto;">
+                  <table>
+                      <tr>
+                          <?php
                       //on recupère le header de notre table
                       $fields = mysqli_fetch_fields($result);
                       foreach ($fields as $field) {
                       echo"<th>".htmlspecialchars($field->name)."</th>";}
                       ?>
-                  </tr>
-                  <?php    //on recupère le body de notre table 
+                      </tr>
+                      <?php    //on recupère le body de notre table 
                     while ($row = mysqli_fetch_assoc($result)) {
                     echo "<tr>";
                     foreach ($fields as $field) {
@@ -210,7 +211,8 @@
                 
                     ?>
 
-              </table>
+                  </table>
+              </div>
           </div>
           <?php if (!isset($_SESSION['login'])): ?>
           <button class="button" onclick="window.location.href='connexion.php'">Connecter vous pour ajouter un
