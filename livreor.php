@@ -178,43 +178,37 @@
         ?>
           <div class=container_form2>
 
-              <h2>Livre d'or</h2>
 
 
-
-              <table>
-
-
-                  <tr>
-                      <?php       
+              <?php       
                 // Récupérer tous les commentaires, du plus récent au plus ancien
           $command = "SELECT commentaires.date AS 'Posté le' ,utilisateurs.login AS 'Par utilisateur',commentaires.commentaire AS 'Commentaires'
           FROM commentaires
           JOIN utilisateurs ON commentaires.id_utilisateur = utilisateurs.id
           ORDER BY commentaires.date DESC ";
           $result = mysqli_query($connexion, $command);
-          $user = mysqli_fetch_assoc($result);     
-                      
-                      
-                      
-                      
-            //on recupère le header de notre table 
-            $fields = mysqli_fetch_fields($result);
-            foreach ($fields as $field) {
-            echo"<th>".htmlspecialchars($field->name)."</th>";}
-            ?>
+         ?>
+              <h2>Livre d'or</h2>
+              <table>
+                  <tr>
+                      <?php
+                      //on recupère le header de notre table
+                      $fields = mysqli_fetch_fields($result);
+                      foreach ($fields as $field) {
+                      echo"<th>".htmlspecialchars($field->name)."</th>";}
+                      ?>
                   </tr>
                   <?php    //on recupère le body de notre table 
-            while ($row = mysqli_fetch_assoc($result)) {
-            echo "<tr>";
-            foreach ($fields as $field) {
-            $fieldName = $field->name;
-            echo "<td>" . htmlspecialchars($row[$fieldName]) . "</td>";
-            }
-            echo"</tr>";
-            }
-        
-            ?>
+                    while ($row = mysqli_fetch_assoc($result)) {
+                    echo "<tr>";
+                    foreach ($fields as $field) {
+                    $fieldName = $field->name;
+                    echo "<td>" . htmlspecialchars($row[$fieldName]) . "</td>";
+                    }
+                    echo"</tr>";
+                    }
+                
+                    ?>
 
               </table>
           </div>
