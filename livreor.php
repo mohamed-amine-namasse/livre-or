@@ -180,12 +180,30 @@
 
 
 
-              <?php       
-                    // Récupérer tous les commentaires, du plus récent au plus ancien
+              <?php    
+              // On récupère la page actuelle
+              if (isset($_GET['page']) && !empty($_GET['page']) ) {
+                  $currentPage = (int)$_GET['page'];}
+              else{
+                  $currentPage = 1;
+              }
+                
+              // On compte le nombre total des commentaires 
+              $nbcommentaires = mysqli_query($connexion, "SELECT COUNT(*) AS total FROM commentaires");
+              $nbcommentaires = mysqli_fetch_assoc($nbcommentaires)['total'];
+              
+             // On définit le nombre de commentaires par page
+             $ParPage = 4;
+            // On calcule le nombre total de pages
+            $pages = ceil($nbcommentaires / $ParPage);
+            //calcul du premier article de la page
+            $premier= $currentPage * $ParPage-$ParPage;
+
+            // Récupérer tous les commentaires, du plus récent au plus ancien
             $command = "SELECT commentaires.date AS 'Posté le' ,utilisateurs.login AS 'Par utilisateur',commentaires.commentaire AS 'Commentaires'
             FROM commentaires
             JOIN utilisateurs ON commentaires.id_utilisateur = utilisateurs.id
-            ORDER BY commentaires.date DESC ";
+            ORDER BY commentaires.date DESC LIMIT $premier,$ParPage";
             $result = mysqli_query($connexion, $command);
             ?>
               <h2>Livre d'or</h2>
@@ -214,6 +232,21 @@
                   </table>
               </div>
           </div>
+          <nav>
+              <ul class="pagination">
+                  <li class="page-item" <?=($currentPage == 1) ? 'disabled' : '' ?>>
+                      <a class="page-link" href="?page=<?=$currentPage-1?>">Précédente</a>
+                  </li>
+                  <?php for($page = 1; $page <= $pages; $page++): ?>
+                  <li class="page-item" <?=($currentPage == $pages) ? 'active' : '' ?>>
+                      <a class="page-link" href="?page=<?=$page?>"><?=$page?></a>
+                  </li>
+                  <?php endfor; ?>
+                  <li class="page-item" <?=($currentPage == $pages) ? 'disabled' : '' ?>>
+                      <a class="page-link" href="?page=<?=$currentPage+1?>">Suivante</a>
+                  </li>
+              </ul>
+          </nav>
           <?php if (!isset($_SESSION['login'])): ?>
           <button class="button" onclick="window.location.href='connexion.php'">Connecter vous pour ajouter un
               commentaire</button>
