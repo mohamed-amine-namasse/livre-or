@@ -1,4 +1,5 @@
 <?php
+        require 'config.php';
         // On démarre une session
         session_start();
         $message1 = '';      // Message à afficher à l'utilisateur
@@ -34,8 +35,7 @@
             }
             // Si les champs ne sont pas vides, on n'est connecté
             if(!empty($_POST['login']) && !empty($_POST['password'])) {
-            $connexion = mysqli_connect('localhost', 'root');
-            mysqli_select_db($connexion, 'livreor');
+            $connexion = $conn;
             $login =$_POST['login'];
             $password =  $_POST['password'];
             // On fait une requete SQL pour insérer l'ensemble des informations de la table utilisateurs
@@ -191,8 +191,7 @@
         
         
         //on établit la connexion avec la base de donnée livreor
-        $connexion = mysqli_connect('localhost', 'root');
-        mysqli_select_db($connexion, 'livreor'); 
+        $connexion = $conn;
         if (!isset($donnee) && isset($_SESSION['login'])) {
         $login = $_SESSION['login'];
         $command = "SELECT * FROM utilisateurs WHERE login='$login'";

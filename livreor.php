@@ -1,4 +1,5 @@
   <?php
+        require 'config.php';
         session_start();
         $message = '';      // Message à afficher à l'utilisateur
         /*****************************************
@@ -152,8 +153,7 @@
           <?php endif; ?>
           <?php
         //on établit la connexion avec la base de donnée moduleconnexion
-        $connexion = mysqli_connect('localhost', 'root');
-        mysqli_select_db($connexion, 'livreor'); 
+        $connexion = $conn;
         
         
         //on fait une requete SQL pour insérer l'ensemble des informations du commentaire dans la table commentaires

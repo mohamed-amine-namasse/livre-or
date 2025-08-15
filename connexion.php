@@ -1,5 +1,5 @@
 <?php
-      
+      require 'config.php';
       
         
         $message = '';      // Message à afficher à l'utilisateur
@@ -142,14 +142,8 @@
         
         
         //on établit la connexion avec la base de donnée moduleconnexion
-        $connexion = mysqli_connect('localhost', 'root');
-        mysqli_select_db($connexion, 'livreor'); 
-        /*
-        if($connexion ){
-            echo "tu es connecté à la BDD!";
-        }
-        else{echo "Echec de connexion à la BDD";}
-        */
+        $connexion = $conn;
+        
         //on fait une requete SQL pour insérer l'ensemble des informations de la table utilisateurs
         if (isset($_POST["login"]) && isset($_POST["password"])&&isset($_POST["confirm_password"]) ){
         $login=$_POST["login"];
