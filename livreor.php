@@ -234,15 +234,15 @@
           </div>
           <nav>
               <ul class="pagination">
-                  <li class="page-item" <?=($currentPage == 1) ? 'disabled' : '' ?>>
-                      <a class="page-link" href="?page=<?=$currentPage-1?>">Précédente</a>
+                  <li class="page-item">
+                      <a class="" href="?page=<?=$currentPage-1?>">Précédente</a>
                   </li>
                   <?php for($page = 1; $page <= $pages; $page++): ?>
-                  <li class="page-item" <?=($currentPage == $pages) ? 'active' : '' ?>>
+                  <li class="page-item">
                       <a class="page-link" href="?page=<?=$page?>"><?=$page?></a>
                   </li>
                   <?php endfor; ?>
-                  <li class="page-item" <?=($currentPage == $pages) ? 'disabled' : '' ?>>
+                  <li class="page-item">
                       <a class="page-link" href="?page=<?=$currentPage+1?>">Suivante</a>
                   </li>
               </ul>

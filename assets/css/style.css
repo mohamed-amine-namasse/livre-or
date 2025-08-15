@@ -311,7 +311,14 @@ button:hover{
    color:black;
   }
 
-  .pagination {
+  
+
+
+
+
+ 
+
+ .pagination {
   list-style: none;
   margin: 0;
   padding: 0;
@@ -322,15 +329,18 @@ button:hover{
 }
 .pagination a {
   display: block;
-  padding: 0.5em 1em;
+  padding: 8px 16px;;
   border: 1px solid #999999;
-  border-radius: 0.2em;
+  border-radius: 5px;
   text-decoration: none;
   background-color: #333333;
   color: white;
 }
+.pagination a:hover {
   
-
+  background-color: green;
+  color: white;
+}
   @media (max-width:982px)
 {
 main{flex-direction: column;
