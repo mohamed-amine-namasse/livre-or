@@ -341,6 +341,12 @@ button:hover{
   background-color: green;
   color: white;
 }
+#pag{
+position: absolute ;
+top:600px
+
+
+}
   @media (max-width:982px)
 {
 main{flex-direction: column;

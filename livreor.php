@@ -158,7 +158,8 @@
         
         //on fait une requete SQL pour insérer l'ensemble des informations du commentaire dans la table commentaires
         if (isset($_POST["comment"]) ){
-        $comment=$_POST["comment"];
+        $comment = mysqli_real_escape_string($connexion,$_POST["comment"]);
+        //$comment=$_POST["comment"];
         date_default_timezone_set('Europe/Paris');
         $date = date('Y-m-d H:i:s'); // Format de date et heure
         $id_utilisateur= $_SESSION['id'];
@@ -232,7 +233,7 @@
                   </table>
               </div>
           </div>
-          <nav>
+          <nav id=pag>
               <ul class="pagination">
                   <li class="page-item">
                       <a class="" href="?page=<?=$currentPage-1?>">Précédente</a>
