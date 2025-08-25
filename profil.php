@@ -197,6 +197,7 @@
         $command = "SELECT * FROM utilisateurs WHERE login='$login'";
         $result = mysqli_query($connexion, $command);
         $donnee = mysqli_fetch_assoc($result);
+        
 }
         
         
@@ -213,11 +214,11 @@
                 <form id=form action=" profil.php" method="post">
 
                     <label><b>Login:</b></label><br>
-                    <input type="text" name="login" value=<?php if (isset($donnee)){ echo $donnee['login'];} ?>><br>
+                    <input type="text" name="login" value="<?php if (isset($donnee)){ echo htmlspecialchars($donnee['login']); } ?>"><br>
                     <label><b>Password:</b></label><br>
-                    <input type="text" name="password" value="" ?><br>
+                    <input type="text" name="password" value=""><br>
                     <div class=btn>
-                        <input class=bouton_submit type="submit" value="Modifier">
+                        <input class="bouton_submit" type="submit" name="modifier" value="Modifier">
                     </div>
                 </form>
             </div>
@@ -225,38 +226,46 @@
         </div>
 
         <?php
-
-    if (
-        isset($_POST["login"]) &&
-        isset($_POST["password"])&&isset($donnee) ) {
             
-        $id=$donnee['id'];
+        if (isset($_POST['modifier']) && isset($donnee)) {
+        $id = $donnee['id'];
         $login = $_POST["login"];
         $password = $_POST["password"];
 
-      
-        
-        
-        $password_hash = password_hash($password, PASSWORD_DEFAULT);
-        $update = "UPDATE utilisateurs SET login='$login', password='$password_hash' WHERE id='$id'";
-        if (mysqli_query($connexion, $update) ) {
+        // Échapper les entrées utilisateur pour la sécurité
+        $login = mysqli_real_escape_string($connexion, $login);
+        $password = mysqli_real_escape_string($connexion, $password);
+
+        if (!empty($password)) {
+            // Hashage du nouveau mot de passe
+            $password_hash = password_hash($password, PASSWORD_DEFAULT);
+            $update = "UPDATE utilisateurs SET login='$login', password='$password_hash' WHERE id='$id'";
+        } else {
+            // Pas de changement de mot de passe
+            $update = "UPDATE utilisateurs SET login='$login' WHERE id='$id'";
+        }
+
+        if (mysqli_query($connexion, $update)) {
             $message3 = "Votre profil mis à jour avec succès !";
-            echo "<p>$message3</p>";
-            // Recharge les données modifiées depuis la base
+
+            // Recharger les données pour afficher les nouvelles valeurs
             $select = "SELECT * FROM utilisateurs WHERE id='$id'";
             $result = mysqli_query($connexion, $select);
             $donnee = mysqli_fetch_assoc($result);
-            
-
         } else {
             $message3 = "Erreur lors de la mise à jour du profil.";
-            echo "<p>$message3</p>";}
         }
+    }
 
-    
-    
-    
 ?>
+
+
+        
+        
+    
+    
+    
+
 
 
 
