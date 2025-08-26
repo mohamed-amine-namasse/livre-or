@@ -51,7 +51,7 @@
                 // On remplit $donnee SEULEMENT si la connexion est réussie
                 $donnee = $user;
                 $_SESSION['id'] = $donnee['id']; // Stocke l'ID de l'utilisateur dans la session
-            } else {
+            } elseif(!isset($_POST['modifier'])) {
                 $message3 = "Erreur : login ou mot de passe incorrect.";
                 // $donnee reste vide, donc le formulaire reste vide
                 $donnee = null;
@@ -207,23 +207,6 @@
 
 
 
-        <div class=container_form>
-            <div>
-                <h2>Information du compte</h2>
-                <br>
-                <form id=form action=" profil.php" method="post">
-
-                    <label><b>Login:</b></label><br>
-                    <input type="text" name="login" value="<?php if (isset($donnee)){ echo htmlspecialchars($donnee['login']); } ?>"><br>
-                    <label><b>Password:</b></label><br>
-                    <input type="text" name="password" value=""><br>
-                    <div class=btn>
-                        <input class="bouton_submit" type="submit" name="modifier" value="Modifier">
-                    </div>
-                </form>
-            </div>
-
-        </div>
 
         <?php
             
@@ -247,6 +230,7 @@
 
         if (mysqli_query($connexion, $update)) {
             $message3 = "Votre profil mis à jour avec succès !";
+            echo "<p>$message3</p>";
 
             // Recharger les données pour afficher les nouvelles valeurs
             $select = "SELECT * FROM utilisateurs WHERE id='$id'";
@@ -254,6 +238,7 @@
             $donnee = mysqli_fetch_assoc($result);
         } else {
             $message3 = "Erreur lors de la mise à jour du profil.";
+            echo "<p>$message3</p>";
         }
     }
 
@@ -261,6 +246,23 @@
 
 
         
+        <div class=container_form>
+            <div>
+                <h2>Information du compte</h2>
+                <br>
+                <form id=form action=" profil.php" method="post">
+
+                    <label><b>Login:</b></label><br>
+                    <input type="text" name="login" value="<?php if (isset($donnee)){ echo htmlspecialchars($donnee['login']); } ?>"><br>
+                    <label><b>Password:</b></label><br>
+                    <input type="text" name="password" value=""><br>
+                    <div class=btn>
+                        <input class="bouton_submit" type="submit" name="modifier" value="Modifier">
+                    </div>
+                </form>
+            </div>
+
+        </div>
         
     
     
