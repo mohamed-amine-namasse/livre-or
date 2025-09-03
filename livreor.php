@@ -238,17 +238,22 @@
           </div>
           <nav id=pag>
               <ul class="pagination">
+                <?php if ($currentPage > 1): ?>
                   <li class="page-item">
                       <a class="" href="?page=<?=$currentPage-1?>">Précédente</a>
                   </li>
+                <?php endif; ?>
+
                   <?php for($page = 1; $page <= $pages; $page++): ?>
-                  <li class="page-item">
-                      <a class="page-link" href="?page=<?=$page?>"><?=$page?></a>
-                  </li>
+                    <li class="page-item">
+                        <a class="page-link" href="?page=<?=$page?>"><?=$page?></a>
+                    </li>
                   <?php endfor; ?>
-                  <li class="page-item">
-                      <a class="page-link" href="?page=<?=$currentPage+1?>">Suivante</a>
-                  </li>
+                  <?php if ($currentPage < $pages): ?>
+                    <li class="page-item">
+                        <a class="page-link" href="?page=<?=$currentPage+1?>">Suivante</a>
+                    </li>
+                  <?php endif; ?>
               </ul>
           </nav>
           <?php if (!isset($_SESSION['login'])): ?>
