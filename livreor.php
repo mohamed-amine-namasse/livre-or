@@ -197,12 +197,17 @@
               $nbcommentaires = mysqli_fetch_assoc($nbcommentaires)['total'];
               
              // On définit le nombre de commentaires par page
-             $ParPage = 4;
+             $ParPage = 7;
             // On calcule le nombre total de pages
             $pages = ceil($nbcommentaires / $ParPage);
             //calcul du premier article de la page
             $premier= $currentPage * $ParPage-$ParPage;
+            
 
+            if ($premier >= $nbcommentaires) {
+                $premier = max(0, $nbcommentaires - $ParPage);
+                $currentPage = $pages;
+            }
             // Récupérer tous les commentaires, du plus récent au plus ancien
             $command = "SELECT commentaires.date AS 'Posté le' ,utilisateurs.login AS 'Par utilisateur',commentaires.commentaire AS 'Commentaires'
             FROM commentaires
@@ -236,30 +241,45 @@
                   </table>
               </div>
           </div>
-          <nav id=pag>
-              <ul class="pagination">
-                <?php if ($currentPage > 1): ?>
-                  <li class="page-item">
-                      <a class="" href="?page=<?=$currentPage-1?>">Précédente</a>
-                  </li>
+        <nav id=pag >
+            <ul class="pagination">
+                <?php
+                $p = $currentPage;
+                $win = 2;
+                $start = max(1, $p - $win);
+                $end = min($pages, $p + $win);
+                if ($start > 1)    $start = max(1, min($start, $pages - ($win * 2)));
+                if ($end < $pages) $end   = min($pages, max($end, 1 + ($win * 2)));
+                ?>
+                <?php if ($p > 1): ?>
+                <li ><a class=edge href="?page=<?=1?>">Première</a></li>
+                <li ><a class=edge href="?page=<?=$p-1?>">Précédente</a></li>
+                   
                 <?php endif; ?>
-
-                  <?php for($page = 1; $page <= $pages; $page++): ?>
-                    <li class="page-item">
-                        <a class="page-link" href="?page=<?=$page?>"><?=$page?></a>
-                    </li>
-                  <?php endfor; ?>
-                  <?php if ($currentPage < $pages): ?>
-                    <li class="page-item">
-                        <a class="page-link" href="?page=<?=$currentPage+1?>">Suivante</a>
-                    </li>
-                  <?php endif; ?>
-              </ul>
-          </nav>
+                <?php if ($start > 1): ?><li><span class=ellipsis>…</span></li><?php endif; ?>
+                <?php for($page = $start; $page <= $end; $page++): ?>
+                    <?php if ($page === $p): ?> 
+                    <li><a class="page-btn is-current"><?= $page ?></a></li>
+                    <?php else: ?>
+                    <li><a  class="page-btn" href="?page=<?=$page?>"><?=$page?></a></li>
+                    <?php endif; ?>
+                <?php endfor; ?>
+                <?php if ($end < $pages): ?><li><span class=ellipsis >…</span></li><?php endif; ?>
+                <?php if ($p < $pages): ?>
+                   
+                <li><a class=edge href="?page=<?=$p+1?>">Suivante</a></li>
+                <li><a class=edge href="?page=<?=$pages?>">Dernière</a></li>
+                    
+                <?php endif; ?>     
+                <span class=nb-pages>Page <?= $p ?>/<?= $pages ?></span>
+            </ul>
+           
+        </nav>
           <?php if (!isset($_SESSION['login'])): ?>
           <button class="button" onclick="window.location.href='connexion.php'">Connecter vous pour ajouter un
               commentaire</button>
           <?php endif; ?>
+          
 
       </main>
 
