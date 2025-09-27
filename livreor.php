@@ -1,4 +1,4 @@
-  <?php
+<?php
         require 'config.php';
         session_start();
         $message = '';      // Message à afficher à l'utilisateur
@@ -152,7 +152,7 @@
           <p><?php echo $message; ?></p>
           <?php endif; ?>
           <?php
-        //on établit la connexion avec la base de donnée moduleconnexion
+        //on établit la connexion avec la base de donnée livreor
         $connexion = $conn;
         
         
