@@ -236,6 +236,8 @@
             $select = "SELECT * FROM utilisateurs WHERE id='$id'";
             $result = mysqli_query($connexion, $select);
             $donnee = mysqli_fetch_assoc($result);
+            $_SESSION['login'] = $donnee['login'];
+            $_SESSION['password'] = $donnee['password'];
         } else {
             $message3 = "Erreur lors de la mise à jour du profil.";
             echo "<p>$message3</p>";
