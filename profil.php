@@ -233,8 +233,8 @@
             echo "<p>$message3</p>";
 
             // Recharger les données pour afficher les nouvelles valeurs
-            $select = "SELECT * FROM utilisateurs WHERE id='$id'";
-            $result = mysqli_query($connexion, $select);
+            $query = "SELECT * FROM utilisateurs WHERE id='$id'";
+            $result = mysqli_query($connexion, $query);
             $donnee = mysqli_fetch_assoc($result);
 			$_SESSION['login'] = $donnee['login'];
             $_SESSION['password'] = $donnee['password'];
