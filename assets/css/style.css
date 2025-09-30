@@ -259,7 +259,7 @@ th {
 td {
   padding: 10px;
 }
-button {
+.button {
   position: absolute;
   top: 36vh;
   background-color: green;
@@ -269,8 +269,21 @@ button {
   border-radius: 5px;
   cursor: pointer;
 }
-button:hover {
+.button:hover {
   background-color: rgb(25, 139, 25);
+}
+.button-profil {
+  background-color: purple;
+  color: white;
+  border: none;
+  position: absolute;
+  top: 140px;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.button-profil:hover {
+  background-color: rgb(246, 75, 246);
 }
 #main_title {
   text-align: left;

@@ -186,7 +186,10 @@
         <?php if(!empty($message3)) : ?>
         <p><?php echo $message3; ?></p>
         <?php endif; ?>
-
+        <?php if($message1 || $message2|| $message3 === "Erreur : login ou mot de passe incorrect.") : ?>
+        
+        <button class="button-profil" onclick="window.location.href='connexion.php'">Retour à la connexion</button>
+        <?php endif; ?>
         <?php
         
         
@@ -247,7 +250,7 @@
 ?>
 
 
-        
+        <?php if (isset($_SESSION['login'])): ?>
         <div class=container_form>
             <div>
                 <h2>Information du compte</h2>
@@ -261,11 +264,12 @@
                     <div class=btn>
                         <input class="bouton_submit" type="submit" name="modifier" value="Modifier">
                     </div>
+                    
                 </form>
             </div>
 
         </div>
-        
+        <?php endif; ?>
     
     
     
